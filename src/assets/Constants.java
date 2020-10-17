@@ -15,18 +15,11 @@ public class Constants {
 
     public static final String APPLICATION_NAME = "Blackjack-HelloWorld";
 
-    private static final java.net.URL BLACKJACK_IMAGE = Constants.class.getResource("blackjack-logo.png");
+    private static final java.net.URL BLACKJACK_IMAGE = Constants.class.getResource("../../images/blackjack-logo-80x80.png");
     public static final ImageIcon BLACKJACK_LOGO = new ImageIcon(BLACKJACK_IMAGE);
 
-    public static final int HORIZONTAL_DISPLACEMENT = 400;
-    public static final int VERTICAL_DISPLACEMENT = 200;
-    public static final int EXTRA_WIDTH = 520;
-    public static final int EXTRA_HEIGHT = 170;
-    public static final int INPUT_WIDTH = 700;
-    public static final int INPUT_HEIGHT = 470;
-
     // Frame colors
-    public static final Color HEADER_BACKGROUND_COLOR = new Color(147, 188, 255);
+    public static final Color HEADER_BACKGROUND_COLOR = new Color(40, 40, 40);
     private static final Color HEADER_BORDER_COLOR = new Color(128, 128, 128);
     private static final Color NAVIGATION_BORDER_COLOR = new Color(198, 198, 198);
     public static final Color SUCCESS_COLOR = new Color(0, 153, 51);
