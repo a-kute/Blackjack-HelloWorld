@@ -29,20 +29,20 @@ public class HomeFrame extends JFrame implements ActionListener {
         super("Blackjack | Home");
 
         contentPanel = new JPanel(new GridBagLayout());
-        navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         logoLabel = new JLabel();
-        blackjackLabel = new JLabel("Blackjack");
+        blackjackLabel = new JLabel("WELCOME!");
 
         tutorialButton = new JButton("Tutorial");
         playButton = new JButton("Play");
 
         width = 650;
-        height = 410;
+        height = 500;
 
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         middle = new Point(screenSize.width / 2, screenSize.height / 2);
-        newLocation = new Point(middle.x - (this.getWidth() / 2),middle.y - (this.getHeight() / 2));
+        newLocation = new Point(middle.x - (width / 2),middle.y - (height / 2));
 
         this.setSize(width, height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +52,6 @@ public class HomeFrame extends JFrame implements ActionListener {
 
         contentPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
         navigationPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
-        this.setBackground(Constants.HEADER_BACKGROUND_COLOR);
 
         logoLabel.setIcon(Constants.BLACKJACK_LOGO);
 
@@ -60,11 +59,13 @@ public class HomeFrame extends JFrame implements ActionListener {
         tutorialButton.setFont(Constants.MAIN_FONT);
         playButton.setFont(Constants.MAIN_FONT);
 
+        blackjackLabel.setForeground(Color.LIGHT_GRAY);
+
         tutorialButton.addActionListener(this);
         playButton.addActionListener(this);
 
-        Constants.addComponent(contentPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
-        Constants.addComponent(contentPanel, blackjackLabel, 1, 0, 1, 1, GridBagConstraints.CENTER);
+        Constants.addComponent(contentPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
+        Constants.addComponent(contentPanel, blackjackLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
 
         navigationPanel.add(tutorialButton);
         navigationPanel.add(playButton);
@@ -77,7 +78,16 @@ public class HomeFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Object buttonPressed = e.getSource();
 
+        if(buttonPressed == tutorialButton) {
+            //TutorialFrame tutorialFrame = new TutorialFrame();
+            //this.dispose();
+        }
+        if(buttonPressed == playButton) {
+            MainFrame mainFrame = new MainFrame(0);
+            this.dispose();
+        }
     }
 
     public static void main(String[] args) {
