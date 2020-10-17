@@ -73,7 +73,7 @@ public class Player {
     }
 
     public void win() {
-        bank += betAmount;
+        bank += 2 * betAmount;
     }
 
     public int getAceCount() {
