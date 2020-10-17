@@ -15,7 +15,7 @@ public class Constants {
 
     public static final String APPLICATION_NAME = "Blackjack-HelloWorld";
 
-    private static final java.net.URL BLACKJACK_IMAGE = Constants.class.getResource("Blackjack-Logo.png");
+    private static final java.net.URL BLACKJACK_IMAGE = Constants.class.getResource("blackjack-logo.png");
     public static final ImageIcon BLACKJACK_LOGO = new ImageIcon(BLACKJACK_IMAGE);
 
     public static final int HORIZONTAL_DISPLACEMENT = 400;
