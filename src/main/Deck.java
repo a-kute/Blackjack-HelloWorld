@@ -104,6 +104,25 @@ public class Deck {
         }
     }
 
+    //gets the next non null card in the array and sets it to null
+    public Card getNextCard() {
+        Card nextCard = null;
+        for(int i = 0; i < getDeckArray().length; i++) {
+            if(deckArray[i] == null) {
+                //do nothing
+            } else {
+                nextCard = deckArray[i];
+                deckArray[i] = null;
+                break;
+            }
+        }
+        if(nextCard == null) {
+            return null;
+        } else {
+            return nextCard;
+        }
+    }
+
     //used for testing purposes
      /**
         public static void main(String[] args) {
