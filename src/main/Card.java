@@ -74,6 +74,10 @@ public class Card {
         return this.value;
     }
 
+    public void setValue(int newValue) {
+        this.value = newValue;
+    }
+
     public ImageIcon getImage() throws IOException {
         String singleCharDenomination = null;
         switch (denomination) {
