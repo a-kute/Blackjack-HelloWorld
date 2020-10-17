@@ -1,6 +1,9 @@
 package gui;
 
 import assets.Constants;
+import assets.ImageUtils;
+import assets.SwingUtils;
+import main.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,10 +53,10 @@ public class HomeFrame extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setLocation(newLocation);
 
-        contentPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
-        navigationPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
+        contentPanel.setBackground(Constants.BACKGROUND_COLOR);
+        navigationPanel.setBackground(Constants.BACKGROUND_COLOR);
 
-        logoLabel.setIcon(Constants.BLACKJACK_LOGO);
+        logoLabel.setIcon(ImageUtils.resizeImageIcon(Constants.BLACKJACK_LOGO, 250, 250));
 
         blackjackLabel.setFont(Constants.HEADER_FONT);
         tutorialButton.setFont(Constants.MAIN_FONT);
@@ -64,8 +67,8 @@ public class HomeFrame extends JFrame implements ActionListener {
         tutorialButton.addActionListener(this);
         playButton.addActionListener(this);
 
-        Constants.addComponent(contentPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
-        Constants.addComponent(contentPanel, blackjackLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentPanel, blackjackLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
 
         navigationPanel.add(tutorialButton);
         navigationPanel.add(playButton);
@@ -81,11 +84,11 @@ public class HomeFrame extends JFrame implements ActionListener {
         Object buttonPressed = e.getSource();
 
         if(buttonPressed == tutorialButton) {
-            //TutorialFrame tutorialFrame = new TutorialFrame();
-            //this.dispose();
+            TutorialFrame tutorialFrame = new TutorialFrame();
+            this.dispose();
         }
         if(buttonPressed == playButton) {
-            MainFrame mainFrame = new MainFrame(0);
+            MainFrame mainFrame = new MainFrame();
             this.dispose();
         }
     }
