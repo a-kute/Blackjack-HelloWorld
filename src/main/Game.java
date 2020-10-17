@@ -5,6 +5,7 @@ public class Game {
     Deck deck  = new Deck();
     public Player player = new Player(600);
     public Dealer dealer = new Dealer();
+    public Card nextCard;
 
     public int getBank() {
         return player.getBank();
@@ -45,25 +46,33 @@ public class Game {
         }
     }
 
+    public Card drawCard(){
+        Card nextCard = deck.getNextCard();
+        this.nextCard = nextCard;
+        return nextCard;
+    }
+
 
     //returns -1 if player total has exceeded 21
     // returns 0 to continue
     //returns 1 that player has won
     public int hitPlayer() {
         checkDeck();
-        Card nextCard = deck.getNextCard();
-        player.addToHand(nextCard);
+
+        player.addToHand(this.nextCard);
 
         if (player.getScore() > 21){
             if(player.getAceCount()>=1){
                 player.setAceCount(player.getAceCount()-1);
                 player.setScore(player.getScore()-10);
             } else {
+                player.loss();
                 return -1;
             }
         }
 
         if (player.getScore()== 21){
+            player.win();
             return 1;
         }
 
@@ -75,19 +84,21 @@ public class Game {
     //returns 1 that player has won
     public int hitDealer() {
         checkDeck();
-        Card nextCard = deck.getNextCard();
-        dealer.addToHand(nextCard);
+
+        dealer.addToHand(this.nextCard);
 
         if (dealer.getScore() > 21){
             if(dealer.getAceCount()>=1){
                 dealer.setAceCount(dealer.getAceCount()-1);
                 dealer.setScore(dealer.getScore()-10);
             } else {
+                player.loss();
                 return -1;
             }
         }
 
         if (dealer.getScore()== 21){
+            player.win();
             return 1;
         }
 
