@@ -120,8 +120,18 @@ public class Deck {
         }
     }
 
-    //used for testing purposes
+    public int getNumberOfAvailableCards() {
+        int count = 0;
+        for (int i = 0; i < deckArray.length; i++) {
+            if(deckArray[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    //used for testing purposes
+    /**
         public static void main(String[] args) {
             Deck d = new Deck();
             d.createDeck();
@@ -131,5 +141,5 @@ public class Deck {
                 System.out.println(sampleDeckArray[i].getSuit() + " " + sampleDeckArray[i].getDenomination());
             }
         }
-
+    **/
 }
