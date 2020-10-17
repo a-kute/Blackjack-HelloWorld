@@ -15,7 +15,7 @@ public class Constants {
 
     public static final String APPLICATION_NAME = "Blackjack-HelloWorld";
 
-    private static final java.net.URL BLACKJACK_IMAGE = Constants.class.getResource("../../images/blackjack-logo-80x80.png");
+    private static final java.net.URL BLACKJACK_IMAGE = Constants.class.getResource("blackjack-logo-250x250.png");
     public static final ImageIcon BLACKJACK_LOGO = new ImageIcon(BLACKJACK_IMAGE);
 
     // Frame colors
