@@ -1,15 +1,15 @@
 package main;
 
 public class Card {
-    private String denomination;
+    private int denomination;
     private String suit;
 
-    public Card(String denomination, String suit) {
+    public Card(int denomination, String suit) {
         this.denomination = denomination;
         this.suit = suit;
     }
 
-    public String getDenomination() {
+    public int getDenomination() {
         return this.denomination;
     }
 
@@ -17,7 +17,7 @@ public class Card {
         return this.suit;
     }
 
-    public void setDenomination(String denomination) {
+    public void setDenomination(int denomination) {
         this.denomination = denomination;
     }
 
