@@ -7,6 +7,7 @@ public class Player {
     private int bank;
     private int betAmount;
     private ArrayList<Card> hand;
+    private int aceCount;
 
 
     public Player(int bank) {
@@ -20,6 +21,9 @@ public class Player {
 
     public void addToHand(Card card) {
         hand.add(card);
+        if (card.getDenomination() == 1) {
+            aceCount++;
+        }
         score += card.getValue();
     }
 
@@ -72,6 +76,9 @@ public class Player {
         bank += betAmount;
     }
 
+    public int getAceCount() {
+        return aceCount;
+    }
 
 
 
