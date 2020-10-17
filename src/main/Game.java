@@ -3,8 +3,12 @@ package main;
 public class Game {
 
     Deck deck  = new Deck();
-    Player player = new Player(600);
-    Dealer dealer = new Dealer();
+    public Player player = new Player(600);
+    public Dealer dealer = new Dealer();
+
+    public int getBank() {
+        return player.getBank();
+    }
 
     public void startGame(){
         deck.createDeck();
