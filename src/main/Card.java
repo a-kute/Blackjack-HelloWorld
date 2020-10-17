@@ -8,10 +8,12 @@ import java.io.*;
 public class Card {
     private int denomination;
     private String suit;
+    private int value;
 
     public Card(int denomination, String suit) {
         this.denomination = denomination;
         this.suit = suit;
+        initValue();
     }
 
     public int getDenomination() {
@@ -30,11 +32,53 @@ public class Card {
         this.suit = suit;
     }
 
+    public void initValue() {
+        switch(denomination) {
+            case 1:
+                value = 11;
+                break;
+            case 2:
+                value = 2;
+                break;
+            case 3:
+                value = 3;
+                break;
+            case 4:
+                value = 4;
+                break;
+            case 5:
+                value = 5;
+                break;
+            case 6:
+                value = 6;
+                break;
+            case 7:
+                value = 7;
+                break;
+            case 8:
+                value = 8;
+                break;
+            case 9:
+                value = 9;
+                break;
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+                value = 10;
+                break;
+        }
+    }
+
+    public int getValue() {
+        return this.value;
+    }
+
     public ImageIcon getImage() throws IOException {
         String singleCharDenomination = null;
         switch (denomination) {
             case 1:
-                singleCharDenomination = "1";
+                singleCharDenomination = "A";
                 break;
             case 2:
                 singleCharDenomination = "2";
@@ -71,9 +115,6 @@ public class Card {
                 break;
             case 13:
                 singleCharDenomination = "K";
-                break;
-            case 14:
-                singleCharDenomination = "A";
                 break;
         }
 

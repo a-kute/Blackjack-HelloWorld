@@ -76,9 +76,6 @@ public class Deck {
                     case 12:
                         newDenomination = 13;
                         break;
-                    case 13:
-                        newDenomination = 14;
-                        break;
                     default:
                         newDenomination = 0;
                 }
@@ -124,15 +121,15 @@ public class Deck {
     }
 
     //used for testing purposes
-     /**
+
         public static void main(String[] args) {
             Deck d = new Deck();
             d.createDeck();
-            d.shuffleDeck();
+
             for (int i = 0; i < d.getDeckArray().length - 1; i++) {
                 Card[] sampleDeckArray = d.getDeckArray();
                 System.out.println(sampleDeckArray[i].getSuit() + " " + sampleDeckArray[i].getDenomination());
             }
         }
-      **/
+
 }
