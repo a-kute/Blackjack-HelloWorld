@@ -15,7 +15,7 @@ public class Deck {
 
     //populates a new unshuffled deck, can also be used to reset the deck to a base state
     public void createDeck() {
-        String newDenomination;
+        int newDenomination;
         String newSuit;
         int count = 0;
         for(int i = 0; i < 4; i++) {
@@ -38,49 +38,49 @@ public class Deck {
                 }
                 switch(j) {
                     case 0:
-                        newDenomination = "1";
+                        newDenomination = 1;
                         break;
                     case 1:
-                        newDenomination = "2";
+                        newDenomination = 2;
                         break;
                     case 2:
-                        newDenomination = "3";
+                        newDenomination = 3;
                         break;
                     case 3:
-                        newDenomination = "4";
+                        newDenomination = 4;
                         break;
                     case 4:
-                        newDenomination = "5";
+                        newDenomination = 5;
                         break;
                     case 5:
-                        newDenomination = "6";
+                        newDenomination = 6;
                         break;
                     case 6:
-                        newDenomination = "7";
+                        newDenomination = 7;
                         break;
                     case 7:
-                        newDenomination = "8";
+                        newDenomination = 8;
                         break;
                     case 8:
-                        newDenomination = "9";
+                        newDenomination = 9;
                         break;
                     case 9:
-                        newDenomination = "10";
+                        newDenomination = 10;
                         break;
                     case 10:
-                        newDenomination = "jack";
+                        newDenomination = 11;
                         break;
                     case 11:
-                        newDenomination = "queen";
+                        newDenomination = 12;
                         break;
                     case 12:
-                        newDenomination = "king";
+                        newDenomination = 13;
                         break;
                     case 13:
-                        newDenomination = "ace";
+                        newDenomination = 14;
                         break;
                     default:
-                        newDenomination = null;
+                        newDenomination = 0;
                 }
                 deckArray[count] = new Card(newDenomination, newSuit);
                 count++;
