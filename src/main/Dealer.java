@@ -36,4 +36,8 @@ public class Dealer {
     public int getAceCount() {
         return aceCount;
     }
+
+    public void setAceCount(int aceCount) {
+        this.aceCount = aceCount;
+    }
 }

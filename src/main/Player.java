@@ -80,8 +80,7 @@ public class Player {
         return aceCount;
     }
 
-
-
-
-
+    public void setAceCount(int aceCount) {
+        this.aceCount = aceCount;
+    }
 }
