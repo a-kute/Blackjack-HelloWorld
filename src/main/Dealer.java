@@ -6,6 +6,7 @@ public class Dealer {
 
     private int score;
     private ArrayList<Card> hand;
+    private int aceCount;
 
     public Dealer() {
         hand = new ArrayList<>();
@@ -13,6 +14,9 @@ public class Dealer {
 
     public void addToHand(Card card) {
         hand.add(card);
+        if (card.getDenomination() == 1) {
+            aceCount++;
+        }
         score += card.getValue();
     }
 
@@ -29,4 +33,7 @@ public class Dealer {
         this.score = score;
     }
 
+    public int getAceCount() {
+        return aceCount;
+    }
 }
