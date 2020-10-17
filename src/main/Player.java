@@ -20,7 +20,7 @@ public class Player {
 
     public void addToHand(Card card) {
         hand.add(card);
-        score += card.getDenomination();
+        score += card.getValue();
     }
 
     public void clearHand() {
