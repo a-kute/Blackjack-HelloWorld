@@ -84,4 +84,8 @@ public class Player {
     public void setAceCount(int aceCount) {
         this.aceCount = aceCount;
     }
+
+    public void setBank(int bank) {
+        this.bank = bank;
+    }
 }
