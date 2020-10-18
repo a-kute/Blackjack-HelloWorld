@@ -19,6 +19,9 @@ public class Dealer {
         }
         score += card.getValue();
     }
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
 
     public void clearHand() {
         hand = new ArrayList<>();
