@@ -16,6 +16,10 @@ public class Game {
         deck.shuffleDeck();
         player.clearHand();
         dealer.clearHand();
+        player.addToHand(drawCard());
+        player.addToHand(drawCard());
+        dealer.addToHand(drawCard());
+        dealer.addToHand(drawCard());
 
     }
 
