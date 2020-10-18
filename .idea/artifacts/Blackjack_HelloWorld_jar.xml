@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="Blackjack-HelloWorld:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Blackjack_HelloWorld_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Blackjack-HelloWorld.jar">
+        <element id="module-output" name="Blackjack-HelloWorld" />
+      </element>
+    </root>
+  </artifact>
+</component>

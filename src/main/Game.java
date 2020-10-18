@@ -60,7 +60,7 @@ public class Game {
         checkDeck();
 
         player.addToHand(this.nextCard);
-        
+
         if (player.getScore() > 21){
             if(player.getAceCount()>=1){
                 player.setAceCount(player.getAceCount()-1);
