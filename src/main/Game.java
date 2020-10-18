@@ -92,13 +92,13 @@ public class Game {
                 dealer.setAceCount(dealer.getAceCount()-1);
                 dealer.setScore(dealer.getScore()-10);
             } else {
-                player.loss();
+                player.win();
                 return -1;
             }
         }
 
         if (dealer.getScore()== 21){
-            player.win();
+
             return 1;
         }
 

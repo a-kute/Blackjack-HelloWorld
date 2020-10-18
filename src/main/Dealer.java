@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class Dealer {
+public class  Dealer {
 
     private int score;
     private ArrayList<Card> hand;
@@ -11,6 +11,8 @@ public class Dealer {
     public Dealer() {
         hand = new ArrayList<>();
     }
+
+
 
     public void addToHand(Card card) {
         hand.add(card);
