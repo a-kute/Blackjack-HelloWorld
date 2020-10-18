@@ -1,3 +1,4 @@
+![Blackjack logo](/src/assets/images/blackjack-logo-250x250.png)
 # Blackjack-HelloWorld
 Our blackjack application provides the user with an intuitive interface allowing them to play multiple games of blackjack until they no longer have any money they can bet. First, the user can view the amount of money they have in the bank and place bets against the CPU dealer. Once the betting stage is complete, the user can choose to start the game in which the interface shows the cards that both the user and dealer draw. Based on the values of those cards, the user is given a choice to either hit or stand. In the event that an ace is drawn, our program calculates whether the value of the ace should be 1 or 11 based on the players hand. The round ends when either the player or dealer reach 21, tie, or go over 21.
 
