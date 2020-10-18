@@ -21,14 +21,10 @@ public class Game {
         dealer.addToHand(drawCard());
         dealer.addToHand(drawCard());
 
-    }
 
-    public void startRound(){
-        checkDeck();
-        player.clearHand();
-        dealer.clearHand();
 
     }
+
 
     public void checkDeck(){
         if (deck.getNumberOfAvailableCards() == 0)
