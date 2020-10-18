@@ -17,8 +17,7 @@ public class HomeFrame extends JFrame implements ActionListener {
 
     private final JLabel logoLabel;
     private final JLabel blackjackLabel;
-
-    private final JButton tutorialButton;
+    
     private final JButton playButton;
 
     private final int width;
@@ -37,7 +36,6 @@ public class HomeFrame extends JFrame implements ActionListener {
         logoLabel = new JLabel();
         blackjackLabel = new JLabel("WELCOME!");
 
-        tutorialButton = new JButton("Tutorial");
         playButton = new JButton("Play");
 
         width = 650;
@@ -59,18 +57,15 @@ public class HomeFrame extends JFrame implements ActionListener {
         logoLabel.setIcon(ImageUtils.resizeImageIcon(Constants.BLACKJACK_LOGO, 250, 250));
 
         blackjackLabel.setFont(Constants.HEADER_FONT);
-        tutorialButton.setFont(Constants.MAIN_FONT);
         playButton.setFont(Constants.MAIN_FONT);
 
         blackjackLabel.setForeground(Color.LIGHT_GRAY);
 
-        tutorialButton.addActionListener(this);
         playButton.addActionListener(this);
 
         SwingUtils.addComponent(contentPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(contentPanel, blackjackLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
 
-        navigationPanel.add(tutorialButton);
         navigationPanel.add(playButton);
 
         this.add(contentPanel, BorderLayout.CENTER);
@@ -83,10 +78,6 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object buttonPressed = e.getSource();
 
-        if(buttonPressed == tutorialButton) {
-            TutorialFrame tutorialFrame = new TutorialFrame();
-            this.dispose();
-        }
         if(buttonPressed == playButton) {
             MainFrame mainFrame = new MainFrame();
             this.dispose();

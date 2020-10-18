@@ -17,6 +17,9 @@ public class MainFrame extends JFrame implements ActionListener {
 
     private static Game game = new Game();
 
+    private int dealerCardCounter = 0;
+    private int playerCardCounter = 0;
+
     private final JPanel leftPanel;
     private final JPanel rightPanel;
     private final JPanel contentPanel;
@@ -35,7 +38,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JLabel betSizeAmountLabel;
     private final JLabel dealerLabel;
     private final JLabel playerLabel;
-    private final JLabel dealerCard1;
+    private JLabel dealerCard1;
     private final JLabel dealerCard2;
     private final JLabel dealerCard3;
     private final JLabel dealerCard4;
@@ -192,18 +195,18 @@ public class MainFrame extends JFrame implements ActionListener {
         SwingUtils.addComponent(playerPanel, playerLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(contentTopPanel, dealerPanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, playerPanel, 1, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerPanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(contentTopPanel, dealerCard1, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, dealerCard2, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, dealerCard3, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, dealerCard4, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, dealerCard5, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, playerCard1, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, playerCard2, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, playerCard3, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, playerCard4, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentTopPanel, playerCard5, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard2, 1, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard3, 2, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard4, 3, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard5, 4, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard1, 0, 3, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard2, 1, 3, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard3, 2, 3, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard4, 3, 3, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard5, 4, 3, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(bankPanel, bankLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(bankPanel, bankAmountLabel, 1, 0, 1, 1, GridBagConstraints.LINE_START);
@@ -257,22 +260,260 @@ public class MainFrame extends JFrame implements ActionListener {
             MainFrame mainFrame = new MainFrame();
         }
         if (buttonPressed == dealButton) {
-            this.dispose();
             game.startGame();
-            java.net.URL dealerCard1URL = null;
-            dealerCard1URL = MainFrame.class.getResource(game.dealer.getHand().get(0).getImage());
-            dealerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerCard1URL), 100, 100));
-            java.net.URL dealerCard2URL = MainFrame.class.getResource("../assets/images/blue_back.png");
-            dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerCard2URL), 100, 100));
-            this.invalidate();
-            this.validate();
-            this.repaint();
+
+            java.net.URL dealerURL1 = MainFrame.class.getResource(game.dealer.getHand().get(dealerCardCounter).getImage());
+            dealerCardCounter++;
+            java.net.URL dealerURL2 = MainFrame.class.getResource("../assets/images/blue_back.png");
+            dealerCardCounter++;
+
+            dealerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL1), 100, 120));
+            dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL2), 100, 120));
+
+            java.net.URL playerURL1 = MainFrame.class.getResource(game.player.getHand().get(playerCardCounter).getImage());
+            playerCardCounter++;
+            java.net.URL playerURL2 = MainFrame.class.getResource(game.player.getHand().get(playerCardCounter).getImage());
+            playerCardCounter++;
+
+            playerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL1), 100, 120));
+            playerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL2), 100, 120));
+
+            dealButton.setEnabled(false);
         }
         if (buttonPressed == hitButton) {
+            game.drawCard();
 
+            switch (game.hitPlayer()) {
+                case -1: {
+                    java.net.URL playerURL3 = MainFrame.class.getResource(game.player.getHand().get(playerCardCounter).getImage());
+                    playerCardCounter++;
+
+                    switch (playerCardCounter) {
+                        case 1: {
+                            playerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 2: {
+                            playerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 3: {
+                            playerCard3.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 4: {
+                            playerCard4.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 5: {
+                            playerCard5.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                    }
+
+                    if (game.getBank() == 0) {
+                        this.dispose();
+                        HomeFrame homeFrame = new HomeFrame();
+                        return;
+                    }
+
+                    JOptionPane.showMessageDialog(this,
+                            "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
+                    this.dispose();
+                    MainFrame mainFrame = new MainFrame();
+                    return;
+                }
+                case 1: {
+                    java.net.URL playerURL3 = MainFrame.class.getResource(game.player.getHand().get(playerCardCounter).getImage());
+                    playerCardCounter++;
+
+                    switch (playerCardCounter) {
+                        case 1: {
+                            playerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 2: {
+                            playerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 3: {
+                            playerCard3.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 4: {
+                            playerCard4.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                        case 5: {
+                            playerCard5.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                            break;
+                        }
+                    }
+
+                    JOptionPane.showMessageDialog(this,
+                            "You Win!", "Win", JOptionPane.OK_OPTION);
+                    this.dispose();
+                    MainFrame mainFrame = new MainFrame();
+                    return;
+                }
+            }
+
+            java.net.URL playerURL3 = MainFrame.class.getResource(game.player.getHand().get(playerCardCounter).getImage());
+            playerCardCounter++;
+
+            switch (playerCardCounter) {
+                case 1: {
+                    playerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                    break;
+                }
+                case 2: {
+                    playerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                    break;
+                }
+                case 3: {
+                    playerCard3.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                    break;
+                }
+                case 4: {
+                    playerCard4.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                    break;
+                }
+                case 5: {
+                    playerCard5.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(playerURL3), 100, 120));
+                    break;
+                }
+            }
         }
         if (buttonPressed == standButton) {
+            java.net.URL dealerURL2 = MainFrame.class.getResource(game.dealer.getHand().get(1).getImage());
+            dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL2), 100, 120));
 
+            if (game.dealer.getScore() > game.player.getScore()) {
+                JOptionPane.showMessageDialog(this,
+                        "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
+
+                game.player.loss();
+
+                this.dispose();
+                MainFrame mainFrame = new MainFrame();
+                return;
+            }
+
+            while (game.dealer.getScore() <= game.player.getScore()) {
+                game.drawCard();
+
+                switch (game.hitDealer()) {
+                    case -1: {
+                        java.net.URL dealerURL = MainFrame.class.getResource(game.dealer.getHand().get(dealerCardCounter).getImage());
+                        dealerCardCounter++;
+
+                        switch (dealerCardCounter) {
+                            case 1: {
+                                dealerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 2: {
+                                dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 3: {
+                                dealerCard3.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 4: {
+                                dealerCard4.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 5: {
+                                dealerCard5.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                        }
+
+                        JOptionPane.showMessageDialog(this,
+                                "You Win!", "Win", JOptionPane.OK_OPTION);
+                        this.dispose();
+                        MainFrame mainFrame = new MainFrame();
+                        return;
+                    }
+                    case 1: {
+                        java.net.URL dealerURL = MainFrame.class.getResource(game.dealer.getHand().get(dealerCardCounter).getImage());
+                        dealerCardCounter++;
+
+                        switch (dealerCardCounter) {
+                            case 1: {
+                                dealerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 2: {
+                                dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 3: {
+                                dealerCard3.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 4: {
+                                dealerCard4.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 5: {
+                                dealerCard5.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                        }
+
+                        if (game.getBank() == 0) {
+                            this.dispose();
+                            HomeFrame homeFrame = new HomeFrame();
+                            return;
+                        }
+
+                        JOptionPane.showMessageDialog(this,
+                                "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
+                        this.dispose();
+                        MainFrame mainFrame = new MainFrame();
+                        return;
+                    }
+                    case 0: {
+                        java.net.URL dealerURL = MainFrame.class.getResource(game.dealer.getHand().get(dealerCardCounter).getImage());
+                        dealerCardCounter++;
+
+                        switch (dealerCardCounter) {
+                            case 1: {
+                                dealerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 2: {
+                                dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 3: {
+                                dealerCard3.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 4: {
+                                dealerCard4.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                            case 5: {
+                                dealerCard5.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL), 100, 120));
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (game.dealer.getScore() > game.player.getScore()) {
+                JOptionPane.showMessageDialog(this,
+                        "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
+
+                game.player.loss();
+
+                this.dispose();
+                MainFrame mainFrame = new MainFrame();
+            }
         }
     }
 }
