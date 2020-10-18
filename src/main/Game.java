@@ -60,10 +60,7 @@ public class Game {
         checkDeck();
 
         player.addToHand(this.nextCard);
-
-        System.out.println("IN HITPLAYER");
-        System.out.println("Player Score: " + player.getScore() + " Dealer Score: " + dealer.getScore());
-
+        
         if (player.getScore() > 21){
             if(player.getAceCount()>=1){
                 player.setAceCount(player.getAceCount()-1);
@@ -89,9 +86,6 @@ public class Game {
         checkDeck();
 
         dealer.addToHand(this.nextCard);
-
-        System.out.println("IN HITDEALER");
-        System.out.println("Player Score: " + player.getScore() + " Dealer Score: " + dealer.getScore());
 
         if (dealer.getScore() > 21){
             if(dealer.getAceCount()>=1){
