@@ -187,6 +187,9 @@ public class MainFrame extends JFrame implements ActionListener {
         if (game.getBank() < 10)
             tenButton.setEnabled(false);
 
+        hitButton.setEnabled(false);
+        standButton.setEnabled(false);
+
         contentBottomPanel.add(dealButton);
         contentBottomPanel.add(hitButton);
         contentBottomPanel.add(standButton);
@@ -260,6 +263,14 @@ public class MainFrame extends JFrame implements ActionListener {
             MainFrame mainFrame = new MainFrame();
         }
         if (buttonPressed == dealButton) {
+            tenButton.setEnabled(false);
+            fiftyButton.setEnabled(false);
+            oneHundredButton.setEnabled(false);
+            fiveHundredButton.setEnabled(false);
+
+            hitButton.setEnabled(true);
+            standButton.setEnabled(true);
+
             game.startGame();
 
             java.net.URL dealerURL1 = MainFrame.class.getResource(game.dealer.getHand().get(dealerCardCounter).getImage());
@@ -312,7 +323,10 @@ public class MainFrame extends JFrame implements ActionListener {
                     }
 
                     if (game.getBank() == 0) {
+                        JOptionPane.showMessageDialog(this,
+                                "You lost all your money!", "Lost", JOptionPane.ERROR_MESSAGE);
                         this.dispose();
+                        game.reset();
                         HomeFrame homeFrame = new HomeFrame();
                         return;
                     }
@@ -321,6 +335,7 @@ public class MainFrame extends JFrame implements ActionListener {
                             "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
                     this.dispose();
                     MainFrame mainFrame = new MainFrame();
+                    //PlayerLoseFrame playerLoseFrame = new PlayerLoseFrame();
                     return;
                 }
                 case 1: {
@@ -354,6 +369,7 @@ public class MainFrame extends JFrame implements ActionListener {
                             "You Win!", "Win", JOptionPane.OK_OPTION);
                     this.dispose();
                     MainFrame mainFrame = new MainFrame();
+                    //PlayerWinFrame playerWinFrame = new PlayerWinFrame();
                     return;
                 }
             }
@@ -389,13 +405,25 @@ public class MainFrame extends JFrame implements ActionListener {
             dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerURL2), 100, 120));
 
             if (game.dealer.getScore() > game.player.getScore()) {
-                JOptionPane.showMessageDialog(this,
-                        "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
-
                 game.player.loss();
 
-                this.dispose();
-                MainFrame mainFrame = new MainFrame();
+                JOptionPane.showMessageDialog(this,
+                        "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
+                if (game.getBank() != 0)
+                    this.dispose();
+
+                if (game.getBank() != 0) {
+                    MainFrame mainFrame = new MainFrame();
+                }
+                //PlayerLoseFrame playerLoseFrame = new PlayerLoseFrame();
+
+                if (game.getBank() == 0) {
+                    JOptionPane.showMessageDialog(this,
+                            "You lost all your money!", "Lost", JOptionPane.ERROR_MESSAGE);
+                    this.dispose();
+                    game.reset();
+                    HomeFrame homeFrame = new HomeFrame();
+                }
                 return;
             }
 
@@ -430,10 +458,20 @@ public class MainFrame extends JFrame implements ActionListener {
                             }
                         }
 
+                        if (game.getBank() == 0) {
+                            JOptionPane.showMessageDialog(this,
+                                    "You lost all your money!", "Lost", JOptionPane.ERROR_MESSAGE);
+                            this.dispose();
+                            HomeFrame homeFrame = new HomeFrame();
+                            game.reset();
+                            return;
+                        }
+
                         JOptionPane.showMessageDialog(this,
                                 "You Win!", "Win", JOptionPane.OK_OPTION);
                         this.dispose();
                         MainFrame mainFrame = new MainFrame();
+                        //PlayerWinFrame playerWinFrame = new PlayerWinFrame();
                         return;
                     }
                     case 1: {
@@ -464,8 +502,11 @@ public class MainFrame extends JFrame implements ActionListener {
                         }
 
                         if (game.getBank() == 0) {
+                            JOptionPane.showMessageDialog(this,
+                                    "You lost all your money!", "Lost", JOptionPane.ERROR_MESSAGE);
                             this.dispose();
                             HomeFrame homeFrame = new HomeFrame();
+                            game.reset();
                             return;
                         }
 
@@ -473,6 +514,7 @@ public class MainFrame extends JFrame implements ActionListener {
                                 "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
                         this.dispose();
                         MainFrame mainFrame = new MainFrame();
+                        //PlayerLoseFrame playerLoseFrame = new PlayerLoseFrame();
                         return;
                     }
                     case 0: {
@@ -501,18 +543,33 @@ public class MainFrame extends JFrame implements ActionListener {
                                 break;
                             }
                         }
+
+                        if (game.getBank() == 0) {
+                            JOptionPane.showMessageDialog(this,
+                                    "You lost all your money!", "Lost", JOptionPane.ERROR_MESSAGE);
+                            this.dispose();
+                            HomeFrame homeFrame = new HomeFrame();
+                            game.reset();
+                            return;
+                        }
                     }
                 }
             }
 
             if (game.dealer.getScore() > game.player.getScore()) {
-                JOptionPane.showMessageDialog(this,
-                        "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
-
                 game.player.loss();
 
+                JOptionPane.showMessageDialog(this,
+                        "Dealer Wins!", "Loss", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 MainFrame mainFrame = new MainFrame();
+                //PlayerLoseFrame playerLoseFrame = new PlayerLoseFrame();
+            } else if (game.dealer.getScore() == game.player.getScore()){
+                JOptionPane.showMessageDialog(this,
+                        "You Win!", "Win", JOptionPane.OK_OPTION);
+                this.dispose();
+                MainFrame mainFrame = new MainFrame();
+                //PlayerPushFrame playerPushFrame = new PlayerPushFrame();
             }
         }
     }

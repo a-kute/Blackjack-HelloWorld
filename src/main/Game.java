@@ -111,8 +111,9 @@ public class Game {
         return 0;
     }
 
-    public void tie() {
-        player.setBank(player.getBetAmount()+player.getBank());
+    public void reset() {
+        player.setBank(600);
+        player.setBetAmount(0);
     }
 
 

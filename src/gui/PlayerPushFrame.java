@@ -3,22 +3,21 @@ package gui;
 import assets.Constants;
 import assets.ImageUtils;
 import assets.SwingUtils;
-import main.Game;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeFrame extends JFrame implements ActionListener {
+public class PlayerPushFrame extends JFrame implements ActionListener {
 
     private final JPanel contentPanel;
     private final JPanel navigationPanel;
 
     private final JLabel logoLabel;
-    private final JLabel blackjackLabel;
+    private final JLabel resultLabel;
 
-    private final JButton playButton;
+    private final JButton closeButton;
 
     private final int width;
     private final int height;
@@ -27,16 +26,16 @@ public class HomeFrame extends JFrame implements ActionListener {
     private final Point middle;
     private final Point newLocation;
 
-    public HomeFrame() {
-        super("Blackjack | Home");
+    public PlayerPushFrame() {
+        super("Blackjack | Push");
 
         contentPanel = new JPanel(new GridBagLayout());
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         logoLabel = new JLabel();
-        blackjackLabel = new JLabel("WELCOME!");
+        resultLabel = new JLabel("Push!");
 
-        playButton = new JButton("Play");
+        closeButton = new JButton("Close");
 
         width = 650;
         height = 500;
@@ -46,7 +45,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         newLocation = new Point(middle.x - (width / 2),middle.y - (height / 2));
 
         this.setSize(width, height);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setResizable(false);
         this.setLocation(newLocation);
@@ -56,17 +55,17 @@ public class HomeFrame extends JFrame implements ActionListener {
 
         logoLabel.setIcon(ImageUtils.resizeImageIcon(Constants.BLACKJACK_LOGO, 250, 250));
 
-        blackjackLabel.setFont(Constants.HEADER_FONT);
-        playButton.setFont(Constants.MAIN_FONT);
+        resultLabel.setFont(Constants.HEADER_FONT);
+        closeButton.setFont(Constants.MAIN_FONT);
 
-        blackjackLabel.setForeground(Color.LIGHT_GRAY);
+        resultLabel.setForeground(Color.WHITE);
 
-        playButton.addActionListener(this);
+        closeButton.addActionListener(this);
 
         SwingUtils.addComponent(contentPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(contentPanel, blackjackLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentPanel, resultLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
 
-        navigationPanel.add(playButton);
+        navigationPanel.add(closeButton);
 
         this.add(contentPanel, BorderLayout.CENTER);
         this.add(navigationPanel, BorderLayout.SOUTH);
@@ -78,13 +77,9 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object buttonPressed = e.getSource();
 
-        if(buttonPressed == playButton) {
-            MainFrame mainFrame = new MainFrame();
+        if(buttonPressed == closeButton) {
             this.dispose();
         }
     }
 
-    public static void main(String[] args) {
-        HomeFrame homeFrame = new HomeFrame();
-    }
 }

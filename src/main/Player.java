@@ -88,4 +88,8 @@ public class Player {
     public void setBank(int bank) {
         this.bank = bank;
     }
+
+    public void setBetAmount(int betAmount) {
+        this.betAmount = betAmount;
+    }
 }

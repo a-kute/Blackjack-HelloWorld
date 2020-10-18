@@ -18,6 +18,7 @@ public class Constants {
     public static final Color BACKGROUND_COLOR = new Color(40, 40, 40);
     private static final Color BUTTON_BORDER_COLOR = new Color(198, 198, 198);
     public static final Color GREEN_COLOR = new Color(0, 153, 51);
+    public static final Color RED_COLOR = new Color(255, 0, 0);
 
     public static final Border BUTTON_BORDER = BorderFactory.createMatteBorder(1, 0, 0, 0, BUTTON_BORDER_COLOR);
 
