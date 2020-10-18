@@ -1,11 +1,5 @@
 package gui;
 
-<<<<<<< HEAD
-public class TutorialFrame {
-
-
-
-=======
 import assets.Constants;
 
 import javax.swing.*;
@@ -46,7 +40,7 @@ public class TutorialFrame extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setLocation(newLocation);
 
-        buttonPanel.setBorder(Constants.NAVIGATION_BORDER);
+        buttonPanel.setBorder(Constants.BUTTON_BORDER);
 
         backButton.setFont(Constants.MAIN_FONT);
         backButton.addActionListener(this);
@@ -67,5 +61,5 @@ public class TutorialFrame extends JFrame implements ActionListener {
         }
 
     }
->>>>>>> main
+
 }

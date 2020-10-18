@@ -10,6 +10,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -33,6 +35,16 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JLabel betSizeAmountLabel;
     private final JLabel dealerLabel;
     private final JLabel playerLabel;
+    private final JLabel dealerCard1;
+    private final JLabel dealerCard2;
+    private final JLabel dealerCard3;
+    private final JLabel dealerCard4;
+    private final JLabel dealerCard5;
+    private final JLabel playerCard1;
+    private final JLabel playerCard2;
+    private final JLabel playerCard3;
+    private final JLabel playerCard4;
+    private final JLabel playerCard5;
 
     private final JButton tenButton;
     private final JButton fiftyButton;
@@ -40,6 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton fiveHundredButton;
     private final JButton hitButton;
     private final JButton standButton;
+    private final JButton dealButton;
 
     private final int width;
     private final int height;
@@ -69,6 +82,16 @@ public class MainFrame extends JFrame implements ActionListener {
         betSizeAmountLabel = new JLabel("$" + game.player.getBetAmount());
         dealerLabel = new JLabel("Dealer's Hand");
         playerLabel = new JLabel("Your Hand");
+        dealerCard1 = new JLabel();
+        dealerCard2 = new JLabel();
+        dealerCard3 = new JLabel();
+        dealerCard4 = new JLabel();
+        dealerCard5 = new JLabel();
+        playerCard1 = new JLabel();
+        playerCard2 = new JLabel();
+        playerCard3 = new JLabel();
+        playerCard4 = new JLabel();
+        playerCard5 = new JLabel();
 
         tenButton = new JButton();
         fiftyButton = new JButton();
@@ -76,6 +99,7 @@ public class MainFrame extends JFrame implements ActionListener {
         fiveHundredButton = new JButton();
         hitButton = new JButton("Hit");
         standButton = new JButton("Stand");
+        dealButton = new JButton("Deal");
 
         width = 1200;
         height = 800;
@@ -123,6 +147,9 @@ public class MainFrame extends JFrame implements ActionListener {
         fiftyButton.addActionListener(this);
         oneHundredButton.addActionListener(this);
         fiveHundredButton.addActionListener(this);
+        hitButton.addActionListener(this);
+        standButton.addActionListener(this);
+        dealButton.addActionListener(this);
 
         tenButton.setIcon(new ImageIcon(Constants.class.getResource("images/10.png")));
         fiftyButton.setIcon(new ImageIcon(Constants.class.getResource("images/50.png")));
@@ -157,14 +184,26 @@ public class MainFrame extends JFrame implements ActionListener {
         if (game.getBank() < 10)
             tenButton.setEnabled(false);
 
+        contentBottomPanel.add(dealButton);
         contentBottomPanel.add(hitButton);
         contentBottomPanel.add(standButton);
-
+        
         SwingUtils.addComponent(dealerPanel, dealerLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(playerPanel, playerLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(contentTopPanel, dealerPanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(contentTopPanel, playerPanel, 1, 0, 1, 1, GridBagConstraints.CENTER);
+
+        SwingUtils.addComponent(contentTopPanel, dealerCard1, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard2, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard3, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard4, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, dealerCard5, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard1, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard2, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard3, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard4, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentTopPanel, playerCard5, 0, 1, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(bankPanel, bankLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(bankPanel, bankAmountLabel, 1, 0, 1, 1, GridBagConstraints.LINE_START);
@@ -216,6 +255,24 @@ public class MainFrame extends JFrame implements ActionListener {
             game.placeBet(500);
             this.dispose();
             MainFrame mainFrame = new MainFrame();
+        }
+        if (buttonPressed == dealButton) {
+            this.dispose();
+            game.startGame();
+            java.net.URL dealerCard1URL = null;
+            dealerCard1URL = MainFrame.class.getResource(game.dealer.getHand().get(0).getImage());
+            dealerCard1.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerCard1URL), 100, 100));
+            java.net.URL dealerCard2URL = MainFrame.class.getResource("../assets/images/blue_back.png");
+            dealerCard2.setIcon(ImageUtils.resizeImageIcon(new ImageIcon(dealerCard2URL), 100, 100));
+            this.invalidate();
+            this.validate();
+            this.repaint();
+        }
+        if (buttonPressed == hitButton) {
+
+        }
+        if (buttonPressed == standButton) {
+
         }
     }
 }

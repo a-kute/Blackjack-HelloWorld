@@ -1,5 +1,7 @@
 package main;
 
+import assets.Constants;
+
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -78,7 +80,7 @@ public class Card {
         this.value = newValue;
     }
 
-    public ImageIcon getImage() throws IOException {
+    public String getImage() {
         String singleCharDenomination = null;
         switch (denomination) {
             case 1:
@@ -138,8 +140,8 @@ public class Card {
                 break;
         }
 
-        File sourceimage = new File("Blackjack-HelloWorld/images/" + singleCharDenomination + singleCharSuit + ".png");
-        Image image = ImageIO.read(sourceimage);
-        return new ImageIcon(image);
+        //java.net.URL sourceImage = Card.class.getResource("../assets/images/" + singleCharDenomination + singleCharSuit + ".png");
+        //ImageIcon image = new ImageIcon(sourceImage);
+        return "../assets/images/" + singleCharDenomination + singleCharSuit + ".png";
     }
 }
